@@ -1,0 +1,23 @@
+{
+  "name": "electron-fcm-demo",
+  "version": "1.0.0",
+  "description": "A demo FCM client",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/CydeSwype/electron-fcm-demo",
+  "keywords": [
+    "Electron",
+    "FCM",
+    "push messages"
+  ],
+  "author": "CydeSwype",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "~1.7.8"
+  },
+  "dependencies": {
+    "electron-push-receiver": "^1.2.4"
+  }
+}

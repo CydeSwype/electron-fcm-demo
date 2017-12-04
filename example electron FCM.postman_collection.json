@@ -1,0 +1,45 @@
+{
+	"info": {
+		"name": "example electron FCM",
+		"_postman_id": "996a2513-7fd5-e493-50f3-932ef9fb7473",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "FCM firebase cloud message to specific device example",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "key=SERVER_KEY" // <-- from FCM web admin under Settings->Cloud Messaging
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"to\" : \"FCM_CLIENT_PUSH_TOKEN\",\n  \"notification\" : {\n    \"title\" : \"example title\",\n    \"body\" : \"example body\"\n  },\n  \"data\" : {\n\t\"foo\" : \"bar\",\n    \"refresh_data\" : 1\n  }\n}"
+				},
+				"url": {
+					"raw": "https://fcm.googleapis.com/fcm/send",
+					"protocol": "https",
+					"host": [
+						"fcm",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"fcm",
+						"send"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
