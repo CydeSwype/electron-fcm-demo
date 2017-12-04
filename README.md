@@ -1,44 +1,36 @@
-# electron-quick-start
+# electron-fcm-demo
 
-**Clone and run for a quick way to see Electron in action.**
-
-This is a minimal Electron application based on the [Quick Start Guide](http://electron.atom.io/docs/tutorial/quick-start) within the Electron documentation.
-
-**Use this app along with the [Electron API Demos](http://electron.atom.io/#get-started) app for API code examples to help you get started.**
-
-A basic Electron application needs just these files:
-
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
-
-You can learn more about each of these components within the [Quick Start Guide](http://electron.atom.io/docs/tutorial/quick-start).
-
-## To Use
-
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+**Demonstration of [electron-push-receiver](https://github.com/MatthieuLemoine/electron-push-receiver) .**
+This demo app shows how to make use of Matthieu Lemoine's excellent electron moduel for receiveing push notifications from Google's Firebase Cloud Messaging (FCM) service.
 
 ```bash
 # Clone this repository
-git clone https://github.com/electron/electron-quick-start
+git clone https://github.com/CydeSwype/electron-fcm-demo
 # Go into the repository
-cd electron-quick-start
+cd electron-fcm-demo
 # Install dependencies
 npm install
+```
+
+You'll need a free Firebase project and you'll want to have Postman installed to simulate the server push.
+
+1. Go to the [Firebase starting page](https://console.firebase.google.com)
+2. Select (or create a new) project
+3. Go into your Firebase project settings and then into Cloud Messaging
+4. Copy your Sender ID and paste it into renderer.js (in place of 123456789)
+5. Also copy your Server Key and replace the placeholder value of "SERVER_KEY" in the postman_collection.json
+
+```bash
 # Run the app
 npm start
 ```
 
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
+With the app running, select View -> Toggle Developer Tools.  You should see the client's FCM push token in the Chromium debug console.  Copy this token and paste it into the postman_collection.json (replacing "FCM_CLIENT_PUSH_TOKEN" with it).  You should now be able to send yourself (or any other client registered with your Sender ID) a push message using Postman.
 
-## Resources for Learning Electron
+This example shows how you can make use of a "silent push message" by not providing the optional body of the message.  This is an arbitrary design and you could just as easily use a flag in the data portion of the push payload to determine whether the user should see a notification vs. it being silent.  Silent pushes can be useful for informing clients of new information only when changes occur on your server without having all clients query your servers at regular intervals (creating unnecessary load even when there may be no new information for them).
 
-- [electron.atom.io/docs](http://electron.atom.io/docs) - all of Electron's documentation
-- [electron.atom.io/community/#boilerplates](http://electron.atom.io/community/#boilerplates) - sample starter apps created by the community
-- [electron/electron-quick-start](https://github.com/electron/electron-quick-start) - a very basic starter Electron app
-- [electron/simple-samples](https://github.com/electron/simple-samples) - small applications with ideas for taking them further
-- [electron/electron-api-demos](https://github.com/electron/electron-api-demos) - an Electron app that teaches you how to use Electron
-- [hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps) - small demo apps for the various Electron APIs
+Note: There is a feature in FCM's web console that allows you to send single or batch push notifications ad-hoc.  This feature seems to only be functional for iOS and Android clients.  At the time of this writing, it doesn't appear that the web console allows for sending to desktop/JS clients.
+
 
 ## License
 
