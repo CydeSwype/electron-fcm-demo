@@ -2,14 +2,14 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 
-const { ipcRenderer } = require ('electron')
+const { ipcRenderer } = window.require ('electron');
 const {
   START_NOTIFICATION_SERVICE,
   NOTIFICATION_SERVICE_STARTED,
   NOTIFICATION_SERVICE_ERROR,
   NOTIFICATION_RECEIVED,
   TOKEN_UPDATED,
-} = require ('electron-push-receiver/src/constants')
+} = window.require('electron-push-receiver/src/constants');
 
 // Listen for service successfully started
 ipcRenderer.on(NOTIFICATION_SERVICE_STARTED, (_, token) => {
